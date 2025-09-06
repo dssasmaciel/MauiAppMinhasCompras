@@ -13,17 +13,36 @@ public partial class NovoProduto : ContentPage
     {
         try
         {
-            Produto p = new Produto
+            if (string.IsNullOrWhiteSpace(txt_descricao.Text) || 
+                string.IsNullOrWhiteSpace(txt_quantidade.Text) || 
+                string.IsNullOrWhiteSpace(txt_preco.Text))
             {
-                Descricao = txt_descricao.Text,
-                Quantidade = Convert.ToDouble(txt_quantidade.Text),
-                Preco = Convert.ToDouble(txt_preco.Text)
-            };
+                await DisplayAlert("Erro", "Preencha todos os campos para salvar.", "OK");
+                return; 
 
-            await App.Db.Insert(p);
-            await DisplayAlert("Sucesso!", "Registro Inserido", "OK");
+            }
+                
+            if (double.TryParse(txt_quantidade.Text, out double quantidade) &&
+                double.TryParse(txt_preco.Text, out double preco))
+            {
+                Produto p = new Produto
+                {
+                    Descricao = txt_descricao.Text,
+                    Quantidade = quantidade,
+                    Preco = preco
+                };
+                
+                await App.Db.Insert(p);
+                await DisplayAlert("Sucesso!", "Produto salvo com sucesso.", "OK");
+                await Navigation.PopAsync();
+            }
+            else
+            {
+                await DisplayAlert("Erro de conversão", "A quantidade e o preço devem ser números válidos.", "OK");
+            }
 
-        }catch (Exception ex)
+         }catch (Exception ex)
+
         {
             await DisplayAlert("Ops", ex.Message, "OK");
         }
