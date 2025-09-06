@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiAppMinhasCompras.Views.ListaProduto"
-             Title="Lista de Produtos">
+             Title="Minhas Compras">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Somar" Clicked="ToolbarItem_Clicked_1"/>
@@ -14,7 +14,7 @@
         <SearchBar x:Name="txt_Search" 
                    Placeholder="Busca de Produtos" 
                    TextChanged="txt_Search_TextChanged"/>
-        <ListView x:Name="lst_produtos">
+        <ListView x:Name="lst_produtos" ItemSelected="lst_produtos_ItemSelected">
 
             <ListView.Header>
                 <Grid ColumnDefinitions="*, *, *, *, *">
