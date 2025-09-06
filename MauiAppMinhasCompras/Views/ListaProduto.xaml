@@ -2,33 +2,35 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiAppMinhasCompras.Views.ListaProduto"
-             Title="Minhas Compras">
+             Title="Minhas Compras"
+             BackgroundColor="LightSlateGray">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Somar" Clicked="ToolbarItem_Clicked_1"/>
         <ToolbarItem Text="Adicionar" Clicked="ToolbarItem_Clicked" />
     </ContentPage.ToolbarItems>
-    
-    
-    <VerticalStackLayout>
+
+
+    <VerticalStackLayout Spacing="10" Padding="15">
         <SearchBar x:Name="txt_Search" 
-                   Placeholder="Busca de Produtos" 
+                   Placeholder="Busca de Produtos"
+                   BackgroundColor="LightYellow"
                    TextChanged="txt_Search_TextChanged"/>
         <ListView x:Name="lst_produtos" ItemSelected="lst_produtos_ItemSelected">
 
             <ListView.Header>
                 <Grid ColumnDefinitions="*, *, *, *, *">
-                    <Label Grid.Column="0" Text="ID" FontAttributes="Bold"/>
-                    <Label Grid.Column="1" Text="Descrição" FontAttributes="Bold"/>
-                    <Label Grid.Column="2" Text="Preço" FontAttributes="Bold"/>
-                    <Label Grid.Column="3" Text="Qtd" FontAttributes="Bold"/>
-                    <Label Grid.Column="4" Text="Total" FontAttributes="Bold" />
-                </Grid>              
-             </ListView.Header>
+                    <Label Grid.Column="0" Text="ID" FontAttributes="Bold" BackgroundColor="White"/>
+                    <Label Grid.Column="1" Text="Descrição" FontAttributes="Bold" BackgroundColor="White"/>
+                    <Label Grid.Column="2" Text="Preço" FontAttributes="Bold" BackgroundColor="White"/>
+                    <Label Grid.Column="3" Text="Qtd" FontAttributes="Bold" BackgroundColor="White"/>
+                    <Label Grid.Column="4" Text="Total" FontAttributes="Bold" BackgroundColor="White"/>
+                </Grid>
+            </ListView.Header>
 
             <ListView.ItemTemplate>
-                    <DataTemplate>
-                      <ViewCell>
+                <DataTemplate>
+                    <ViewCell>
                         <ViewCell.ContextActions>
                             <MenuItem Text="Remover" Clicked="MenuItem_Clicked" />
                         </ViewCell.ContextActions>
@@ -40,9 +42,8 @@
                             <Label Grid.Column="4" Text="{Binding Total, StringFormat='{0:C}'}" />
                         </Grid>
                     </ViewCell>
-                 </DataTemplate>         
-              </ListView.ItemTemplate>  
-            
-         </ListView>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
     </VerticalStackLayout>
-</ContentPage>
